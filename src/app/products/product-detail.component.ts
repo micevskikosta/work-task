@@ -33,7 +33,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
             params => {
                 let id = +params['id'];
                 if (this.appData.recipe == undefined) {
-                    this._recipeService.getRecepies().map(
+                    this._recipeService.getRecipes().map(
                         rec => rec.json()).subscribe(recIng => {
                             this.appData.recipe = recIng;
                             this.recipe = this.appData.recipe.find(item => item.recipeId == id);

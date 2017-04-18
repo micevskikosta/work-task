@@ -32,7 +32,7 @@ var RecipeComponent = (function () {
     RecipeComponent.prototype.saveRecipe = function () {
         var _this = this;
         if (this.appData.recipe == undefined) {
-            this._recipeService.getRecepies().map(function (rec) { return rec.json(); }).subscribe(function (recIng) {
+            this._recipeService.getRecipes().map(function (rec) { return rec.json(); }).subscribe(function (recIng) {
                 _this.appData.recipe = recIng;
                 _this.recipe.recipeId = _this.appData.recipe.length + 1;
             });

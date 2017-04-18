@@ -31,7 +31,7 @@ export class RecipeComponent implements OnInit {
 
     saveRecipe() {
         if (this.appData.recipe == undefined) {
-            this._recipeService.getRecepies().map(
+            this._recipeService.getRecipes().map(
                 rec => rec.json()).subscribe(recIng => {
                     this.appData.recipe = recIng;
                     this.recipe.recipeId = this.appData.recipe.length + 1

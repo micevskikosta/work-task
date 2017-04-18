@@ -28,7 +28,7 @@ var ProductDetailComponent = (function () {
         this.sub = this._route.params.subscribe(function (params) {
             var id = +params['id'];
             if (_this.appData.recipe == undefined) {
-                _this._recipeService.getRecepies().map(function (rec) { return rec.json(); }).subscribe(function (recIng) {
+                _this._recipeService.getRecipes().map(function (rec) { return rec.json(); }).subscribe(function (recIng) {
                     _this.appData.recipe = recIng;
                     _this.recipe = _this.appData.recipe.find(function (item) { return item.recipeId == id; });
                 });
