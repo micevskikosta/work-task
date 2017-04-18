@@ -1,0 +1,59 @@
+<div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
+<div class='product-holder' *ngIf='recipe && recipe.length'>
+    <div *ngFor='let item of this.recipeFullList | productFilter:listFilter' class="recipe-holder padding-5 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="recipe-order"><i>{{item.id}}</i></div>
+        <div class="remove-item"><i (click)='ConfirmDeletion(item)' class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteItem"></i></div>
+        <div class="recipe-item full-width border-bottom">
+            <div class="recipe-title full-width border-bottom">
+                {{item.recipeName}}
+            </div>
+            <div class="full-width border-bottom instructions">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <b>Instructions:</b> {{ item.instructions | slice:0:50 }}{{item.instructions.length > 50 ? '...' : ''}}
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div>
+                        <b>Ingredients:</b>
+                        <span *ngFor="let ing of item.ingredients; let i = index">
+                            <span *ngIf="i<3">{{ing.name}}<span *ngIf="i<2">,</span></span>
+                            <span *ngIf="i==2">...</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 padding-15 recipe-info">
+                <div class="full-width">
+                    <i class="glyphicon glyphicon-list-alt"> Number of ingredients</i><span class="preparation-time">{{item.numberOfIngredients}}</span>
+                </div>
+                <div class="full-width">
+                    <i class="glyphicon glyphicon-time"> Preparation time</i> <span class="preparation-time">{{item.preparationTime}}</span>
+                </div>
+                <div class="full-width author">
+                    {{ item.recipeSource }}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 padding-15 button-holder">
+                <button class="btn btn-default no-border full-width-button btn-gray" [routerLink]="['/product', item.recipeId]">More</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete the ricepie <b>{{deleteRecipeName}}</b> ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default no-border btn-gray" data-dismiss="modal">Close</button>
+                <button (click)='Delete(deleteItem)' type="button" class="btn btn-primary no-border btn-gray" data-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

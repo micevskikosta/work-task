@@ -1,0 +1,28 @@
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 add-new-recipe">
+    <form>
+        <div class="form-group">
+            <label for="recipeName">Recipe name</label>
+            <input [(ngModel)]="recipe.recipeName" id="recipeName" class="form-control" type="text" name="recipeName" required />
+        </div>
+        <div class="form-group">
+            <label for="source">Source</label>
+            <input [(ngModel)]="recipe.recipeSource" id="source" type="password" class="form-control" type="text" name="recipeSource" required>
+        </div>
+        <div id="preparation" class="form-group">
+            <label for="preparationTime">Preparation time</label>
+            <input [ngModel]="recipe.preparationTime" id="preparationTime" type="password" class="form-control" type="text" name="preparationTime" required>
+        </div>
+        <div class="form-group">
+            <label for="instructions">Instructions</label>
+            <input [(ngModel)]="recipe.instructions" id="instructions" type="password" class="form-control" type="text" name="instructions" required>
+        </div>
+        <div class="form-group border-bottom">
+            <label>Ingredients</label>
+        </div>
+        <div class="form-group" *ngFor="let item of ingredient">
+            <label for="{{item.name}}">{{item.name}}</label>
+            <input id="{{item.name}}" class="form-control" type="text" name="instructions" type="number" required #input [(ngModel)]="item.quantity">
+        </div>
+        <button type="submit" class="btn btn-default" (click)="Save(recipe)">Save</button>
+    </form>
+</div>

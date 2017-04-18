@@ -1,0 +1,132 @@
+body {
+    font-family: "Source Sans Pro",Arial !important;
+}
+
+.recipe-holder {
+    margin-bottom: 5px;
+    position: relative;
+}
+
+    .recipe-holder:last-child {
+        padding-bottom: 50px;
+    }
+
+.recipe-item {
+    box-shadow: 0 0 2px 1px #f2f2f2;
+    padding: 5px;
+    border: 1px solid #e6e6e6;
+    height: 100%;
+    background: white;
+}
+
+.recipe-title {
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 5px;
+    padding-left: 15px;
+    color: #4d4d4d;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.full-width {
+    width: 100%;
+    float: left;
+}
+
+.padding-15 {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.padding-5 {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.instructions {
+    padding-bottom:15px;
+    font-size: 13px;
+}
+
+.recipe-info {
+    font-size: 12px;
+    font-style: italic;
+    color: #7f7f7f;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+    .recipe-info .author {
+        color: #d1a659;
+        margin-top: 5px;
+    }
+
+    .recipe-info .preparation {
+        float: right;
+        margin-right: 5px;
+    }
+
+.total-ingredients {
+    position: absolute;
+    bottom: 0;
+}
+
+.remove-item {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    font-size: 13px;
+    color: #d9d7d7;
+}
+
+    .remove-item:hover {
+        color: #7f7f7f;
+        cursor: pointer;
+    }
+
+
+.recipe-order{
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    font-size: 10px;
+    border: 1px solid gray;
+    border-radius: 50%;
+    width: 15px;
+    text-align: center;
+    background: gray;
+    color: white;
+}
+
+.detail-holder {
+    text-decoration: none;
+    color: inherit !important;
+}
+
+.no-border{
+    border-radius:0;
+}
+
+.button-holder{
+    padding-top: 30px;
+    text-align: right;
+}
+
+@media all and (max-width:991px) {
+   .full-width-button { width: 100%; display:block; }
+}
+
+.btn-gray{
+    background:gray;
+    color:white;
+}
+
+    .btn-gray:hover {
+        background: white;
+        color: gray;
+    }
