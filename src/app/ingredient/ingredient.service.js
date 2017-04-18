@@ -19,15 +19,10 @@ var IngredientService = (function () {
         this._http = _http;
         this._ingredientUrl = 'api/ingredient/ingredient.json';
     }
-    IngredientService.prototype.get = function () {
+    /** Returns all the ingredients */
+    IngredientService.prototype.getIngredients = function () {
         return this._http.get(this._ingredientUrl)
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); });
-    };
-    IngredientService.prototype.getAdd = function () {
-        return this._http.get(this._ingredientUrl)
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); });
+            .map(function (response) { return response.json(); });
     };
     return IngredientService;
 }());

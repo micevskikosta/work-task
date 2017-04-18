@@ -1,8 +1,8 @@
 <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
 <div class='product-holder' *ngIf='recipe && recipe.length'>
-    <div *ngFor='let item of this.recipeFullList | productFilter:listFilter' class="recipe-holder padding-5 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div *ngFor='let item of this.recipeFullList' class="recipe-holder padding-5 col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="recipe-order"><i>{{item.id}}</i></div>
-        <div class="remove-item"><i (click)='ConfirmDeletion(item)' class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteItem"></i></div>
+        <div class="remove-item"><i (click)='confirmDeletion(item)' class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteItem"></i></div>
         <div class="recipe-item full-width border-bottom">
             <div class="recipe-title full-width border-bottom">
                 {{item.recipeName}}
@@ -23,10 +23,10 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 padding-15 recipe-info">
                 <div class="full-width">
-                    <i class="glyphicon glyphicon-list-alt"> Number of ingredients</i><span class="preparation-time">{{item.numberOfIngredients}}</span>
+                    <i class="glyphicon glyphicon-list-alt"> Number of ingredients:&nbsp;</i><span class="preparation-time">{{item.numberOfIngredients}}</span>
                 </div>
                 <div class="full-width">
-                    <i class="glyphicon glyphicon-time"> Preparation time</i> <span class="preparation-time">{{item.preparationTime}}</span>
+                    <i class="glyphicon glyphicon-time"> Preparation time&nbsp;</i><span class="preparation-time">{{item.preparationTime}}</span>
                 </div>
                 <div class="full-width author">
                     {{ item.recipeSource }}
@@ -52,7 +52,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default no-border btn-gray" data-dismiss="modal">Close</button>
-                <button (click)='Delete(deleteItem)' type="button" class="btn btn-primary no-border btn-gray" data-dismiss="modal">Delete</button>
+                <button (click)='deleteRecipe(deleteItem)' type="button" class="btn btn-primary no-border btn-gray" data-dismiss="modal">Delete</button>
             </div>
         </div>
     </div>

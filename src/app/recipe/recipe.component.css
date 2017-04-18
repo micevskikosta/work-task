@@ -25,3 +25,14 @@
 .border-bottom{
     border-bottom: 1px solid #e6e6e6;
 }
+
+
+.btn-gray {
+    background: #808080;
+    color: #fff;
+}
+
+    .btn-gray:hover {
+        background: #fff;
+        color: #808080;
+    }

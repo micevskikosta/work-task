@@ -20,34 +20,13 @@ var RecipeService = (function () {
         this._recipeUrl = 'api/recipe/recipe.json';
         this._recipeIngredientUrl = 'api/recepieIngrediens/recipeIngredients.json';
     }
-    RecipeService.prototype.save = function (value) {
-        var jsonString = JSON.stringify(value);
-    };
-    RecipeService.prototype.saveRecipeIngredient = function (value) {
-        var jsonString = JSON.stringify(value);
-    };
-    RecipeService.prototype.getRecepies = function () {
+    /** Returns all the recipes */
+    RecipeService.prototype.getRecipes = function () {
         return this._http.get(this._recipeUrl);
     };
-    RecipeService.prototype.getIngredientsWithParam = function (value) {
-        var params = new http_1.URLSearchParams();
-        params.set('recipeId', value);
-        return this._http.get(this._recipeIngredientUrl, params);
-    };
+    /** Returns all the recepie ingredients */
     RecipeService.prototype.getRecipeIngredients = function () {
         return this._http.get(this._recipeIngredientUrl);
-    };
-    RecipeService.prototype.getOneRecepies = function (id) {
-        return this.getRecepiesObservable()
-            .map(function (recipies) { return recipies.find(function (p) { return p.recipeId == id; }); });
-    };
-    RecipeService.prototype.getRecepiesObservable = function () {
-        return this._http.get(this._recipeUrl)
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); });
-    };
-    RecipeService.prototype.delete = function (id) {
-        // return this._http.delete(this._recipeIngredientUrl + id);
     };
     return RecipeService;
 }());

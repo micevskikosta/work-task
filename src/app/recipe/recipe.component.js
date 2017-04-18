@@ -27,9 +27,9 @@ var RecipeComponent = (function () {
     RecipeComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.recipe = new recipe_1.Recipe();
-        this._ingredientService.getAdd().subscribe(function (ingredient) { return _this.ingredient = ingredient; });
+        this._ingredientService.getIngredients().subscribe(function (ingredient) { return _this.ingredient = ingredient; });
     };
-    RecipeComponent.prototype.Save = function () {
+    RecipeComponent.prototype.saveRecipe = function () {
         var _this = this;
         if (this.appData.recipe == undefined) {
             this._recipeService.getRecepies().map(function (rec) { return rec.json(); }).subscribe(function (recIng) {
@@ -60,8 +60,6 @@ var RecipeComponent = (function () {
                 }
             }
         });
-        this._recipeService.save(this.recipe);
-        this._recipeService.saveRecipeIngredient(this.recipeIngredient);
         setTimeout(function () {
             _this.appData.recipe.push(_this.recipe);
             _this._router.navigate(['recipeList']);

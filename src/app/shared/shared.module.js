@@ -19,7 +19,7 @@ SharedModule = __decorate([
         exports: [
             common_1.CommonModule,
             forms_1.FormsModule
-        ],
+        ]
     })
 ], SharedModule);
 exports.SharedModule = SharedModule;

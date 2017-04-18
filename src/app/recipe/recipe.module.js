@@ -21,17 +21,15 @@ RecipeModule = __decorate([
         imports: [
             shared_module_1.SharedModule,
             router_1.RouterModule.forChild([
-                { path: 'addRecipe', component: recipe_component_1.RecipeComponent },
+                { path: 'addRecipe', component: recipe_component_1.RecipeComponent }
             ])
         ],
         declarations: [
-            // ProductListComponent,
-            // ProductDetailComponent,
             recipe_component_1.RecipeComponent
         ],
         providers: [
             recipe_service_1.RecipeService,
-            ingredient_service_1.IngredientService,
+            ingredient_service_1.IngredientService
         ]
     })
 ], RecipeModule);

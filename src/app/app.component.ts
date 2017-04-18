@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AppData } from './app.data'
+
 @Component({
     selector: 'pm-app',
     template: `
@@ -7,9 +8,8 @@ import { AppData } from './app.data'
         <nav class='navbar navbar-default'>
             <div class='container-fluid'>
                 <a class='navbar-brand'>{{pageTitle}}</a>
-                <ul class='nav navbar-nav'>
-                   
-                    <li><a [routerLink]="['/products']">Recipe List</a></li>
+                <ul class='nav navbar-nav'>                   
+                     <li><a [routerLink]="['/products']">Recipe List</a></li>
                      <li><a [routerLink]="['/addRecipe']">New recipe</a></li>
                 </ul>
             </div>
@@ -22,7 +22,4 @@ import { AppData } from './app.data'
     providers: [AppData]
 })
 
-
-export class AppComponent {
-
-}
+export class AppComponent { }

@@ -1,7 +1,3 @@
-body {
-    font-family: "Source Sans Pro",Arial !important;
-}
-
 .recipe-holder {
     margin-bottom: 5px;
     position: relative;
@@ -16,7 +12,7 @@ body {
     padding: 5px;
     border: 1px solid #e6e6e6;
     height: 100%;
-    background: white;
+    background: #fff;
 }
 
 .recipe-title {
@@ -49,7 +45,7 @@ body {
 }
 
 .instructions {
-    padding-bottom:15px;
+    padding-bottom: 15px;
     font-size: 13px;
 }
 
@@ -90,17 +86,17 @@ body {
     }
 
 
-.recipe-order{
+.recipe-order {
     position: absolute;
     left: 10px;
     top: 5px;
     font-size: 10px;
-    border: 1px solid gray;
+    border: 1px solid #808080;
     border-radius: 50%;
     width: 15px;
     text-align: center;
-    background: gray;
-    color: white;
+    background: #808080;
+    color: #fff;
 }
 
 .detail-holder {
@@ -108,25 +104,28 @@ body {
     color: inherit !important;
 }
 
-.no-border{
-    border-radius:0;
+.no-border {
+    border-radius: 0;
 }
 
-.button-holder{
+.button-holder {
     padding-top: 30px;
     text-align: right;
 }
 
 @media all and (max-width:991px) {
-   .full-width-button { width: 100%; display:block; }
+    .full-width-button {
+        width: 100%;
+        display: block;
+    }
 }
 
-.btn-gray{
-    background:gray;
-    color:white;
+.btn-gray {
+    background: #808080;
+    color: #fff;
 }
 
     .btn-gray:hover {
-        background: white;
-        color: gray;
+        background: #fff;
+        color: #808080;
     }

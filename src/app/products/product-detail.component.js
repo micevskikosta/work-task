@@ -45,7 +45,7 @@ var ProductDetailComponent = (function () {
             else {
                 _this.allRecipeIngredients = _this.appData.recipeIngredients;
             }
-            _this._ingredientService.get().subscribe(function (ingredient) {
+            _this._ingredientService.getIngredients().subscribe(function (ingredient) {
                 _this.ingredient = ingredient;
                 _this.initDetails();
             });
@@ -69,15 +69,16 @@ var ProductDetailComponent = (function () {
                 _this.recipeIngredients.push({ name: n, quantity: q });
             }
         });
+        return;
     };
     ProductDetailComponent.prototype.onBack = function () {
         this._router.navigate(['/products']);
     };
-    ProductDetailComponent.prototype.ConfirmDeletion = function (deleteItem) {
+    ProductDetailComponent.prototype.confirmDeletion = function (deleteItem) {
         this.deleteItem = deleteItem;
         this.deleteRecipeName = deleteItem.recipeName;
     };
-    ProductDetailComponent.prototype.Delete = function (rec) {
+    ProductDetailComponent.prototype.deleteRecipe = function (rec) {
         var selected = this.appData.recipe.find(function (item) { return item.recipeId == rec.recipeId; });
         this.appData.recipe.splice(this.appData.recipe.indexOf(selected), 1);
         this._router.navigate(['/products']);

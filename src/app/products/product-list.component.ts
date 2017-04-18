@@ -4,33 +4,29 @@ import { Recipe } from '../recipe/recipe';
 import { Ingredient } from '../ingredient/ingredient'
 import { RecipeFull } from '../recipe/recipe';
 import { RecipeIngredient } from '../recipe/recipeIngredient';
-import { ProductService } from './product.service';
 import { RecipeService } from '../recipe/recipe.service';
 import { IngredientService } from '../ingredient/ingredient.service'
 import { AppData } from '../app.data'
+
 @Component({
     templateUrl: 'app/products/product-list.component.html',
     styleUrls: ['app/products/product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
     pageTitle: string = 'Recipe List';
-    imageWidth: number = 50;
-    imageMargin: number = 2;
-    showImage: boolean = false;
     deleteItem: RecipeFull;
     deleteRecipeName: string;
     errorMessage: string;
     counter: number;
-
     recipe: Recipe[];
     recipeFull: RecipeFull;
     recipeFullDetails: RecipeFull;
     recipeFullList: RecipeFull[];
     recipeIngredients: RecipeIngredient[];
     ingredient: Ingredient[];
+
     constructor(private _recipeService: RecipeService, private _ingredientService: IngredientService, private _router: Router, private appData: AppData) { }
-
-
+    
     ngOnInit(): void {
         this.recipeFullDetails = new RecipeFull();
         this.counter = 0;
@@ -41,7 +37,6 @@ export class ProductListComponent implements OnInit {
                 ing => ing.json()).subscribe(dataIng => {
                     this.recipeIngredients = dataIng;
                     this.appData.recipeIngredients = this.recipeIngredients;
-                    let c;
                 });
         }
         else {
@@ -49,7 +44,7 @@ export class ProductListComponent implements OnInit {
         }
 
         if (this.appData.recipe == undefined) {
-            this._recipeService.getRecepies().map(
+            this._recipeService.getRecipes().map(
                 rec => rec.json()).subscribe(recIng => {
                     this.recipe = recIng;
                     this.appData.recipe = this.recipe;
@@ -59,14 +54,14 @@ export class ProductListComponent implements OnInit {
             this.recipe = this.appData.recipe;
         }
 
-        this._ingredientService.get().subscribe(
+        this._ingredientService.getIngredients().subscribe(
             ingredient => {
                 this.ingredient = ingredient;
                 this.initRecipe();
         });
     }
 
-    initRecipe(): void {
+    initRecipe(): PromiseLike<void> {
         this.recipe.forEach(element => {
             this.recipeFull = new RecipeFull();
             this.recipeFull.ingredients = [];
@@ -96,14 +91,15 @@ export class ProductListComponent implements OnInit {
             });
             this.recipeFullList.push(this.recipeFull);
         });
+        return;
     }
 
-    ConfirmDeletion(deleteItem: RecipeFull): void {
+    confirmDeletion(deleteItem: RecipeFull): void {
         this.deleteItem = deleteItem;
         this.deleteRecipeName = deleteItem.recipeName;
     }
 
-    Delete(rec: Recipe): void {
+    deleteRecipe(rec: Recipe): void {
         let selected = this.appData.recipe.find(item => item.recipeId == rec.recipeId);
         this.appData.recipe.splice(this.appData.recipe.indexOf(selected), 1);
         this.recipe = this.appData.recipe;

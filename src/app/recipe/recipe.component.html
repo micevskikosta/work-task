@@ -23,6 +23,6 @@
             <label for="{{item.name}}">{{item.name}}</label>
             <input id="{{item.name}}" class="form-control" type="text" name="instructions" type="number" required #input [(ngModel)]="item.quantity">
         </div>
-        <button type="submit" class="btn btn-default" (click)="Save(recipe)">Save</button>
+        <button type="submit" class="btn btn-default btn-gray" (click)="saveRecipe(recipe)">Save</button>
     </form>
 </div>

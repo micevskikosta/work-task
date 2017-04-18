@@ -21,9 +21,6 @@ var ProductListComponent = (function () {
         this._router = _router;
         this.appData = appData;
         this.pageTitle = 'Recipe List';
-        this.imageWidth = 50;
-        this.imageMargin = 2;
-        this.showImage = false;
     }
     ProductListComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -34,14 +31,13 @@ var ProductListComponent = (function () {
             this._recipeService.getRecipeIngredients().map(function (ing) { return ing.json(); }).subscribe(function (dataIng) {
                 _this.recipeIngredients = dataIng;
                 _this.appData.recipeIngredients = _this.recipeIngredients;
-                var c;
             });
         }
         else {
             this.recipeIngredients = this.appData.recipeIngredients;
         }
         if (this.appData.recipe == undefined) {
-            this._recipeService.getRecepies().map(function (rec) { return rec.json(); }).subscribe(function (recIng) {
+            this._recipeService.getRecipes().map(function (rec) { return rec.json(); }).subscribe(function (recIng) {
                 _this.recipe = recIng;
                 _this.appData.recipe = _this.recipe;
             });
@@ -49,7 +45,7 @@ var ProductListComponent = (function () {
         else {
             this.recipe = this.appData.recipe;
         }
-        this._ingredientService.get().subscribe(function (ingredient) {
+        this._ingredientService.getIngredients().subscribe(function (ingredient) {
             _this.ingredient = ingredient;
             _this.initRecipe();
         });
@@ -82,12 +78,13 @@ var ProductListComponent = (function () {
             });
             _this.recipeFullList.push(_this.recipeFull);
         });
+        return;
     };
-    ProductListComponent.prototype.ConfirmDeletion = function (deleteItem) {
+    ProductListComponent.prototype.confirmDeletion = function (deleteItem) {
         this.deleteItem = deleteItem;
         this.deleteRecipeName = deleteItem.recipeName;
     };
-    ProductListComponent.prototype.Delete = function (rec) {
+    ProductListComponent.prototype.deleteRecipe = function (rec) {
         var selected = this.appData.recipe.find(function (item) { return item.recipeId == rec.recipeId; });
         this.appData.recipe.splice(this.appData.recipe.indexOf(selected), 1);
         this.recipe = this.appData.recipe;

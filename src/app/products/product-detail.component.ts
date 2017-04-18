@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { Subscription } from 'rxjs/Subscription';
 import { Ingredient } from '../ingredient/ingredient'
 import { Ingredients } from '../recipe/recipe'
@@ -9,6 +8,7 @@ import { RecipeIngredient } from '../recipe/recipeIngredient';
 import { RecipeService } from '../recipe/recipe.service';
 import { IngredientService } from '../ingredient/ingredient.service'
 import { AppData } from '../app.data'
+
 @Component({
     templateUrl: 'app/products/product-detail.component.html',
     styleUrls: ['app/products/product-list.component.css']
@@ -16,13 +16,14 @@ import { AppData } from '../app.data'
 export class ProductDetailComponent implements OnInit, OnDestroy {
     private sub: Subscription;
     pageTitle: string = 'Recipe Detail';
-    recipe: Recipe;
     errorMessage: string;
+    recipe: Recipe;
     deleteItem: Recipe;
     deleteRecipeName: string;
     recipeIngredients: Ingredients[] = [];
     allRecipeIngredients: RecipeIngredient[];
-    ingredient: Ingredient[]
+    ingredient: Ingredient[];
+
     constructor(private _route: ActivatedRoute,
         private _router: Router,
         private _recipeService: RecipeService, private _ingredientService: IngredientService, private appData: AppData) { }
@@ -53,7 +54,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
                     this.allRecipeIngredients = this.appData.recipeIngredients;
                 }
 
-                this._ingredientService.get().subscribe(
+                this._ingredientService.getIngredients().subscribe(
                     ingredient => {
                         this.ingredient = ingredient;
                         this.initDetails();
@@ -65,7 +66,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         this.sub.unsubscribe();
     }
 
-    initDetails(): void {
+    initDetails(): PromiseLike<void> {
         if (this.recipe.preparationTime.substring(0, 3) == "00:") {
             this.recipe.preparationTime = this.recipe.preparationTime.substring(3, 5) + " m";
         }
@@ -80,18 +81,19 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
                 this.recipeIngredients.push({ name: n, quantity: q });
             }
         })
+        return;
     }
 
     onBack(): void {
         this._router.navigate(['/products']);
     }
 
-    ConfirmDeletion(deleteItem: Recipe): void {
+    confirmDeletion(deleteItem: Recipe): void {
         this.deleteItem = deleteItem;
         this.deleteRecipeName = deleteItem.recipeName;
     }
 
-    Delete(rec: Recipe): void {
+    deleteRecipe(rec: Recipe): void {
         let selected = this.appData.recipe.find(item => item.recipeId == rec.recipeId);
         this.appData.recipe.splice(this.appData.recipe.indexOf(selected), 1);
         this._router.navigate(['/products']);

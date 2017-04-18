@@ -5,16 +5,16 @@ var Recipe = (function () {
     return Recipe;
 }());
 exports.Recipe = Recipe;
-var RecipeFull = (function () {
-    function RecipeFull() {
-    }
-    return RecipeFull;
-}());
-exports.RecipeFull = RecipeFull;
 var Ingredients = (function () {
     function Ingredients() {
     }
     return Ingredients;
 }());
 exports.Ingredients = Ingredients;
+var RecipeFull = (function () {
+    function RecipeFull() {
+    }
+    return RecipeFull;
+}());
+exports.RecipeFull = RecipeFull;
 //# sourceMappingURL=recipe.js.map

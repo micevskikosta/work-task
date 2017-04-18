@@ -3,17 +3,19 @@ import { Router } from '@angular/router';
 import { Recipe } from './recipe';
 import { RecipeIngredient } from './recipeIngredient';
 import { RecipeService } from './recipe.service';
-import { Ingredient, IngredientAdd } from '../ingredient/ingredient'
+import { Ingredient } from '../ingredient/ingredient'
 import { IngredientService } from '../ingredient/ingredient.service'
 import { AppData } from '../app.data'
+
 declare var $: any;
+
 @Component({
     templateUrl: 'app/recipe/recipe.component.html',
     styleUrls: ['app/recipe/recipe.component.css']
 })
 export class RecipeComponent implements OnInit {
     recipe: Recipe;
-    ingredient: IngredientAdd[];
+    ingredient: Ingredient[];
     recipeIngredient: RecipeIngredient[];
     constructor(private _recipeService: RecipeService, private _ingredientService: IngredientService, private _router: Router, private appData: AppData) {
         setTimeout(() => {
@@ -23,11 +25,11 @@ export class RecipeComponent implements OnInit {
 
     ngOnInit(): void {
         this.recipe = new Recipe();
-        this._ingredientService.getAdd().subscribe(
+        this._ingredientService.getIngredients().subscribe(
             ingredient => this.ingredient = ingredient);
     }
 
-    Save() {
+    saveRecipe() {
         if (this.appData.recipe == undefined) {
             this._recipeService.getRecepies().map(
                 rec => rec.json()).subscribe(recIng => {
@@ -60,9 +62,7 @@ export class RecipeComponent implements OnInit {
                 }
             }
         });
-
-        this._recipeService.save(this.recipe);
-        this._recipeService.saveRecipeIngredient(this.recipeIngredient);
+        
         setTimeout(() => {
             this.appData.recipe.push(this.recipe);
             this._router.navigate(['recipeList']);
@@ -71,7 +71,7 @@ export class RecipeComponent implements OnInit {
 
     newGuid() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
             return v.toString(16);
         });
     }
